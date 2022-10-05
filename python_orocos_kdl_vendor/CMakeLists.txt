@@ -4,6 +4,15 @@ project(python_orocos_kdl_vendor)
 
 find_package(ament_cmake REQUIRED)
 
+# FindPythonLibs deprecated since 3.12
+# https://cmake.org/cmake/help/latest/module/FindPythonLibs.html
+# Use FindPython to set the cache variables.
+find_package(Python 3 REQUIRED
+  COMPONENTS Interpreter Development
+)
+set(PYTHON_LIBRARY ${Python_LIBRARY_DIRS})
+set(PYTHON_INCLUDE_DIR ${Python_INCLUDE_DIRS})
+
 option(FORCE_BUILD_VENDOR_PKG
   "Build python_orocos_kdl from source, even if system-installed package is available"
   OFF)
